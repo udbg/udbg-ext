@@ -1,0 +1,33 @@
+[package]
+name = "udbg-ext"
+version = "0.1.0"
+authors = ["metaworm <metaworm@outlook.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+log = '0.4.8'
+ntapi = '0.3.4'
+goblin = '^0.2'
+memmap = '^0.7'
+anyhow = '1.0'
+c_str_macro = '^1.0'
+derive_more = '0.99.11'
+serde = {version = '1.0', default-features = false, features = ['rc', 'derive']}
+llua = {git = 'https://github.com/udbg/llua', package = 'llua-dyn'}
+udbg-base = {git = 'https://github.com/udbg/udbg-base', features = ['udbg']}
+proto = {git = 'https://github.com/udbg/udbg-driver', package = 'proto', features = ['std']}
+winapi = {version = '0.3.9', features = [
+    "winnt", "processthreadsapi", "psapi", "errhandlingapi", "winuser", "winbase", "fileapi",
+    "memoryapi", "dbghelp", "debugapi", "ioapiset", "winerror", "stringapiset", "winnls",
+    "shellapi", "winsvc", "synchapi", "wincrypt", "softpub",
+    "shellscalingapi", "sysinfoapi", "heapapi", 'tlhelp32', 'wow64apiset', "securitybaseapi"
+]}
+
+[build-dependencies]
+cc = '1.0'
+
+[lib]
+name = 'uext'
+crate-type = ['cdylib']
